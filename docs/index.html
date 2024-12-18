@@ -42,7 +42,23 @@
       width: 200px;
       font-weight: 600;
     }
+    .custom-quote {
+      background-color: #fff8e3; /* 浅黄色背景 */
+      border-left: 4px solid #ffc107; /* 左侧黄色边框 */
+      padding: 10px 20px; /* 内边距 */
+      margin: 10px 0; /* 外边距 */
+      border-radius: 4px; /* 圆角 */
+      font-family: Arial, sans-serif; /* 字体 */
+  }
 
+  .custom-quote h5 {
+      margin: 0; /* 移除默认的 h5 边距 */
+  }
+
+  .custom-quote small {
+      color: #333; /* 深灰色文字 */
+      font-size: 16px; /* 文字大小 */
+  }
     .paper-btn-tapestry {
       position: relative;
       text-align: center;
@@ -191,7 +207,7 @@
 <div class="container">
   <div id="content" class="container-fluid d-flex flex-column align-items-center gap-3">
     <h1 class="text-nowrap mt-5">🏆 LiveMathBench Leaderboard 🏆</h1>
-    <h3 class="fw-light text-nowrap"><small id="warning">GPassK: Are Your LLMs Capable of Stable Reasoning? <br></small></h3>
+    <h2 class="fw-light text-nowrap"><small id="warning">GPassK: Are Your LLMs Capable of Stable Reasoning? <br></small></h2>
      <div style="clear: both">
       <div class="paper-btn-parent">
         <a class="paper-btn" href="https://arxiv.org/abs/2412.13147">
@@ -203,13 +219,23 @@
             Code
         </a>
       </div>
+
         <!-- <div class="toggle-btn-parent">
           <button class="toggle-btn" id="toggleButton">
               <span class="material-icons"> swap_horiz </span>
               Show Theory Scores
           </button>
         </div> -->
+        <div class="alert alert-info custom-quote" role="alert">
+          <h5 class="fw-light text-nowrap">
+              <small id="warning">
+                  📢 Calling for Evaluation! If you want to see your model on the leaderboard, feel free to <a href="https://github.com/open-compass/GPassK/pulls">contact</a> us!!!
+              </small>
+          </h5>
+      </div>
     </div>
+
+
     <div>
       <div  id="chart" style="width:100%;height:600px;"></div>
       <div class="container-fluid d-flex flex-row flex-nowrap">
@@ -225,7 +251,7 @@
             <li>Models labeled with 🌍 are Closed-source models, while others are Open-sourced. </li>
             <li>Models labeled with 🧮 are Mathematics-Specialization models. </li>
             <li>Models labeled with 💡 are o1-like models with Long-cot. </li>
-            <li>Feel free to <a href="https://github.com/open-compass/GPassK/pulls">file a request</a> to add your models on our leaderboard. </li>
+            <!-- <li>Feel free to <a href="https://github.com/open-compass/GPassK/pulls">file a request</a> to add your models on our leaderboard. </li> -->
           </ol>
         </p>
       </div>
