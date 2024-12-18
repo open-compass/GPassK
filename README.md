@@ -30,8 +30,7 @@ $$ \text{G-Pass@}k = \mathbb{E}_{\text{Questions}} \left[ \frac{{c \choose k}}{{
 where $n$ represents the total number of generations per question, and $c$ denotes the number
 of generations resulting in correct solutions.
 
-$$ \text{G-Pass@}k_{\tau} = \mathbb{E}_{\text{Questions}} \left[ \sum_{j= \lceil \tau \cdot k \rceil}^{c} \frac{\binom{c}{j} \cdot \binom{n - c}{k - j}}{\binom{n}{k}} \right] $$
-
+$$ \text{G-Pass@}k_{\tau} = E_{\text{Questions}} \left[ \sum_{j = \lceil \tau \cdot k \rceil}^{c} \frac{\binom{c}{j} \cdot \binom{n - c}{k - j}}{\binom{n}{k}} \right] $$
 where $\lceil \tau \cdot k \rceil$ denotes the smallest integer greater than or equal to $\tau \cdot k$.
 
 
