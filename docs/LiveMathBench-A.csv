@@ -15,6 +15,6 @@ DeepSeek-Math-7B-RL,20.6,17.9,12.7,5.8,11.7,https://github.com/deepseek-ai/DeepS
 NuminaMath-72B-CoT,34.5,22.6,12.8,3.7,11.8,https://example.com/numinamath,TRUE,TRUE,FALSE
 Qwen2.5-Math-7B-Instruct,39.9,39.2,32.2,24.2,31.2,https://github.com/QwenLM/Qwen,TRUE,TRUE,FALSE
 Qwen2.5-Math-72B-Instruct,50.4,45.3,37.8,26.8,36.5,https://github.com/QwenLM/Qwen,TRUE,TRUE,FALSE
-Skywork-o1,39.5,31.2,24.1,13.1,22.6,https://example.com/skywork,FALSE,FALSE,TRUE
+Skywork-o1,39.5,31.2,24.1,13.1,22.6,https://example.com/skywork,TRUE,FALSE,TRUE
 QwQ-32B-Preview,64.3,66.6,56.2,33.3,52.2,https://example.com/qwq,TRUE,FALSE,TRUE
 OpenAI o1-mini,66.5,68.5,58.8,42.0,56.5,https://openai.com/research/o1,FALSE,FALSE,TRUE
