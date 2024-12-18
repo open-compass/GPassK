@@ -24,7 +24,7 @@
 **G-Pass@k** is a novel evaluation metric that provides a continuous assessment of model performance across multiple sampling attempts, quantifying both the model’s peak performance potential and its stability. In addition, it comes with **LiveMathBench**, a dynamic benchmark comprising challenging, contemporary mathematical problems designed to minimize data leakage risks during evaluation. In order to track the latest performance and stability of LLMs, we will continue updating the benchmark with new comptition level mathmatical problems and provide the latest results of the models on the benchmark with G-Pass@k.
 
 
-## 🌲 Definition of GPassk
+## 🌲 Definition of GPassK
 $$ \text{G-Pass@}k = \mathbb{E}_{\text{Questions}} \left[ \frac{{c \choose k}}{{n \choose k}} \right] $$ 
 
 where $n$ represents the total number of generations per question, and $c$ denotes the number
@@ -34,6 +34,9 @@ $$ \text{G-Pass@}k_{\tau} = E_{\text{Questions}} \left[ \sum_{j = \lceil \tau \c
 
 where $\lceil \tau \cdot k \rceil$ denotes the smallest integer greater than or equal to $\tau \cdot k$.
 
+$$ \text{mG-Pass@}k_{\tau} = 2\int_{0.5}^{1.0} \text{G-Pass@}k_{\tau} d \tau = \frac{2}{k} \sum_{i= \lceil 0.5 \cdot k \rceil + 1}^{k} \text{G-Pass@}k_{\frac{i}{k}} $$
+
+Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area under the curve of $\text{mG-Pass@}k_{[0.5:1.0]}$, serving as a comprehensive metric that integrates all $\text{G-Pass@}k_{\tau}$ values where $\tau \in [0.5, 1.0]$. 
 
 ## 📚 Main Result
 *LiveMathBench-202412 version*
