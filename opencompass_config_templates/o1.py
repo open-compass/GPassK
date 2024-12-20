@@ -13,8 +13,8 @@ version = '202412'
 temperatures = [1.0]
 
 max_out_len = 32768
-top_p = 0.8
-top_k = 50
+top_p = 1.0
+top_k = 40
 repetition_penalty = 1.0
 random_seed = 42
 
