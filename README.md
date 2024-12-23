@@ -63,7 +63,7 @@ pip install -e .
 
 
 ### 2. Prepare Dataset
-You can access the LiveMathBench Dataset from [huggingface](https://huggingface.co/datasets/jnanliu/LiveMathBench).
+You can access the LiveMathBench Dataset from [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
 
 
 ### 3. Deploy Judge Models
