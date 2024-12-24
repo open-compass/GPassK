@@ -63,7 +63,7 @@ pip install -e .
 
 
 ### 2. Prepare Dataset
-You can access the LiveMathBench Dataset from [huggingface](https://huggingface.co/datasets/jnanliu/LiveMathBench).
+You can access the LiveMathBench Dataset from [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
 
 
 ### 3. Deploy Judge Models
@@ -87,10 +87,10 @@ python save_opencompass_configs.py --config_template_file {opencompass_config_te
 After running the script, you can check the opencompass config files in `opencompass_configs/`, such as:
 ```
 .
-├── deepseek-math-7b-rl_t0-3_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-202412-k4_8_16-r3.py
-├── deepseek-math-7b-rl_t0-5_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-202412-k4_8_16-r3.py
-├── deepseek-math-7b-rl_t0-7_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-202412-k4_8_16-r3.py
-├── deepseek-math-7b-rl_t1-0_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-202412-k4_8_16-r3.py
+├── deepseek-math-7b-rl_t0-3_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
+├── deepseek-math-7b-rl_t0-5_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
+├── deepseek-math-7b-rl_t0-7_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
+├── deepseek-math-7b-rl_t1-0_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
 ```
 
 Here, the file name of each opencompass config file follow the pattern:
