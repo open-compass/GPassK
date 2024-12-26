@@ -50,41 +50,55 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 [OpenCompass](https://github.com/open-compass/opencompass) is a toolkit for evaluating the performance of large language models (LLMs). To use GPassK in OpenCompass, you can follow the steps below:
 
 ### 1. Prepare Environment
+Follow these steps to ensure your environment is ready:
+
 ```bash
-git clone https://github.com/open-compass/GPassK
+# Clone the main repository
+git clone https://github.com/open-compass/GPassK.git
 cd GPassK
-conda create -n livemathbench-eval python=3.10 pytorch torchvision pytorch-cuda -c nvidia -c pytorch -y
+
+# Create and activate a conda environment with specific Python and PyTorch versions
+conda create -n livemathbench-eval python=3.10 pytorch torchvision torchaudio pytorch-cuda -c nvidia -c pytorch -y
 conda activate livemathbench-eval
+
+# Install additional required packages
 pip install loguru
-git clone https://github.com/open-compass/opencompass opencompass
+
+# Clone and install OpenCompass for extended functionality
+git clone https://github.com/open-compass/opencompass.git opencompass
 cd opencompass
 pip install -e .
 ```
 
 
 ### 2. Prepare Dataset
-You can access the LiveMathBench dataset from [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
+The LiveMathBench dataset can be obtained from Hugging Face:
+* [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
 
 
 ### 3. Deploy Judge Models
 We leverage Qwen2.5-72B-Instruct as the judge model for judging the correctness of generated answers. We recommend to deploy services using deployment tools such as [vllm](https://github.com/vllm-project/vllm) or [lmdeploy](https://github.com/InternLM/lmdeploy) for invocation by different evaluation tasks.
 
-Here is an example using lmdeploy:
+Below is an example configuration for deploying the judge model using `lmdeploy`:
 ```bash
 lmdeploy serve api_server Qwen/Qwen2.5-72B-Instruct --server-port 8000 \
     --tp 4 \ # at least 4 A100 or equivalent GPUs are required
     --cache-max-entry-count 0.9 \
     --log-level INFO 
 ```
-Put your urls in definition of `eval_urls` in `opencompass_config_templates/*.py`. You can also modify other parameters, such as `k`， `temperatures`, and `llm_infos`.
+After setting up the judge model, define the URLs in the `eval_urls` within `opencompass_config_templates/*.py`. Adjust other parameters such as `k`， `temperatures`, `llm_infos`, and other params according to your needs.
+
+> ❗️Note that omitting `eval_urls` will default to an internal rule-based judge, which might only apply to datasets with numerical answers 
 
 ### 4. Evaluation
-First, you can run the script `save_opencompass_configs.py` to generate all opencompass config files:
+
+To begin the evaluation, first generate the necessary configuration files by running the following script:
 ```bash
 python save_opencompass_configs.py --config_template_file {opencompass_config_templates/nono1.py|opencompass_config_templates/o1.py}
 ```
 
-After running the script, you can check the opencompass config files in `opencompass_configs/`, such as:
+Upon execution, verify the generated configuration files located in `opencompass_configs/:
+
 ```
 .
 ├── deepseek-math-7b-rl_t0-3_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
@@ -93,12 +107,13 @@ After running the script, you can check the opencompass config files in `opencom
 ├── deepseek-math-7b-rl_t1-0_p0-8_k50_rp1-0_rs42_l8192@LiveMathBench-v202412-k4_8_16-r3.py
 ```
 
-Here, the file name of each opencompass config file follow the pattern:
+These files follow a naming convention that reflects the model settings and dataset used:
 ```
 [MODEL_ABBR]_t[TEMPERATUE]_p[TOP_P]_k[TOP_K]_rp[REPETITION_PENALTY]_l[MAX_OUT_LEN]@[DATASET_ABBR]_k[LIST_OF_K]_r[REPLICATION].py
 ```
 
-Then, you can start evaluation by following commands：
+With the configurations prepared, initiate the evaluation process with the commands below:
+
 ```bash
 cd GPassK
 conda activate livemathbench-eval
@@ -106,7 +121,7 @@ python opencompass/run.py {path/to/config_file} \
       -w ./opencompass_outputs/ \
       --dump-eval-details \
 ```
-You can check the documentations of opencompass for more useful arguments.
+Refer to the OpenCompass documentation for additional arguments that may enhance your evaluation experience 
 
 
 # Citation and Tech Report
