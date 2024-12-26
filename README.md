@@ -72,8 +72,8 @@ pip install -e .
 
 
 ### 2. Prepare Dataset
-The LiveMathBench dataset can be obtained from Hugging Face:
-* [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
+LiveMathBench dataset can be obtained from HuggingFace. First, you should be granted to access the dataset from the following link: [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
+Then, refer to [security-tokens](https://huggingface.co/docs/hub/security-tokens) to set up your HF tokens.
 
 
 ### 3. Deploy Judge Models
