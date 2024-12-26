@@ -127,13 +127,10 @@ Refer to the OpenCompass documentation for additional arguments that may enhance
 # Citation and Tech Report
 If you use G-Pass@k in your research, please cite the following paper:
 ```
-@misc{liu2024llmscapablestablereasoning,
-      title={Are Your LLMs Capable of Stable Reasoning?}, 
-      author={Junnan Liu and Hongwei Liu and Linchen Xiao and Ziyi Wang and Kuikun Liu and Songyang Gao and Wenwei Zhang and Songyang Zhang and Kai Chen},
-      year={2024},
-      eprint={2412.13147},
-      archivePrefix={arXiv},
-      primaryClass={cs.AI},
-      url={https://arxiv.org/abs/2412.13147}, 
+@article{liu2024your,
+  title={Are Your LLMs Capable of Stable Reasoning?},
+  author={Liu, Junnan and Liu, Hongwei and Xiao, Linchen and Wang, Ziyi and Liu, Kuikun and Gao, Songyang and Zhang, Wenwei and Zhang, Songyang and Chen, Kai},
+  journal={arXiv preprint arXiv:2412.13147},
+  year={2024}
 }
 ```
