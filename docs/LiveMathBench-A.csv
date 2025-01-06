@@ -13,7 +13,7 @@ Claude-3.5-Sonnet,46.7,44.1,36.2,26.6,35.3,https://docs.anthropic.com/claude/doc
 GPT-4o-2024-11-20,44.8,41.9,32.9,22.2,31.6,https://openai.com/research/gpt-4,FALSE,FALSE,FALSE
 DeepSeek-Math-7B-RL,23.5,19.8,14.0,9.7,13.7,https://github.com/deepseek-ai/DeepSeek-LLM,TRUE,TRUE,FALSE
 NuminaMath-72B-CoT,40.8,34.0,27.1,14.2,25.0,https://example.com/numinamath,TRUE,TRUE,FALSE
-Qwen2.5-Math-7B-Instruct,441.,441.,38.3,28.1,36.6,https://github.com/QwenLM/Qwen,TRUE,TRUE,FALSE
+Qwen2.5-Math-7B-Instruct,44.1,44.1,38.3,28.1,36.6,https://github.com/QwenLM/Qwen,TRUE,TRUE,FALSE
 Qwen2.5-Math-72B-Instruct,57.6,52.7,45.4,27.9,42.3,https://github.com/QwenLM/Qwen,TRUE,TRUE,FALSE
 Skywork-o1-8B,45.4,39.3,31.9,21.7,30.4,https://example.com/skywork,TRUE,FALSE,TRUE
 QwQ-32B-Preview,72.7,74.9,65.8,40.1,61.2,https://example.com/qwq,TRUE,FALSE,TRUE
