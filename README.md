@@ -16,7 +16,7 @@
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
-- **[2024.12.30]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be assessed through hugginface, and you can also evaluate LLMs on itt using G-Pass@k in OpenCompass. We fix some potential errors in LiveMathBench and sampling parameters inconsistency, please also check our new version of **[Paper]()**.
+- **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be assessed through hugginface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147))** for further details.
 - **[2024.12.18]** We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 🎉🎉🎉
 
 
