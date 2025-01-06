@@ -9,13 +9,14 @@
 
 
 <div align="center">
- <img src="https://github.com/user-attachments/assets/d91b1b5d-c932-402c-b86d-2846620a68b0" width="800"/>
+ <img src="assets/pass-at-k-v-s-greedy-g-pass-at-k.png" width="800"/>
 </div>
 
 <!-- [🏰[Project Page](https://github.com/open-compass/GPassK/)]
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
+- **[2024.12.30]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be assessed through hugginface, and you can also evaluate LLMs on itt using G-Pass@k in OpenCompass. We fix some potential errors in LiveMathBench and sampling parameters inconsistency, please also check our new version of **[Paper]()**.
 - **[2024.12.18]** We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 🎉🎉🎉
 
 
@@ -42,7 +43,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 *LiveMathBench-202412 version*
 
 <div align="center">
- <img src="https://github.com/user-attachments/assets/0e5d57c6-7fec-475e-acbe-cfa6aa2088cb" width="800"/>
+ <img src="assets/performance.png" width="800"/>
 </div>
 
 
