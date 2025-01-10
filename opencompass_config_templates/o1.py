@@ -21,6 +21,7 @@ random_seed = 42
 eval_urls = [
     # Put your judge model urls urls here
 ]
+eval_model_name = 'Qwen/Qwen2.5-72B-Instruct'
 
 
 llm_infos = [
@@ -69,7 +70,7 @@ livemathbench_dataset.update(dict(
     abbr=f'LiveMathBench-v{version}-k{"_".join(map(str, [k] if isinstance(k, int) else k))}-r{replication}'
 ))
 livemathbench_dataset['eval_cfg']['evaluator'].update(dict(
-    model_name='Qwen/Qwen2.5-72B-Instruct',
+    model_name=eval_model_name,
     url=eval_urls,
     k=k,
     replication=replication 

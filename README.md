@@ -16,8 +16,9 @@
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
+- **[2025.1.10]** 🔥 We release a small-scale judge model [LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge).
 - **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be accessed through hugginface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147)** for further details.
-- **[2024.12.18]** We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 🎉🎉🎉
+- **[2024.12.18]** 🎉 We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 
 
 
 ## ☀️Introduction
@@ -87,9 +88,11 @@ lmdeploy serve api_server Qwen/Qwen2.5-72B-Instruct --server-port 8000 \
     --cache-max-entry-count 0.9 \
     --log-level INFO 
 ```
-After setting up the judge model, define the URLs in the `eval_urls` within `opencompass_config_templates/*.py`. Adjust other parameters such as `k`， `temperatures`, `llm_infos`, and other params according to your needs.
+After setting up the judge model, define the URLs in the `eval_urls` and `eval_model_name` within `opencompass_config_templates/*.py`. Adjust other parameters such as `k`， `temperatures`, `llm_infos`, and other params according to your needs.
 
 > ❗️Note that omitting `eval_urls` will default to an internal rule-based judge, which might only apply to datasets with numerical answers 
+
+> 💡Now you can use the [LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge) for judging, which greatly reduces deploy and inference costs.
 
 ### 4. Evaluation
 
