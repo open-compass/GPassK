@@ -75,7 +75,7 @@ livemathbench_dataset = livemathbench_datasets[0]
 livemathbench_dataset.update(dict(
     k=k,
     replication=replication,
-    dataset_splits=['CNMO', 'CCEE', 'AMC', 'WLPMC'], 
+    dataset_splits=['CNMO', 'CCEE', 'AMC', 'WLPMC'], # set ['hard'] for hard split
     dataset_languages=['cn', 'en'],
     cot=True,
     version=version,
