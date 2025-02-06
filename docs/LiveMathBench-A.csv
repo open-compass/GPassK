@@ -18,3 +18,10 @@ Qwen2.5-Math-72B-Instruct,57.6,52.7,45.4,27.9,42.3,https://github.com/QwenLM/Qwe
 Skywork-o1-8B,45.4,39.3,31.9,21.7,30.4,https://example.com/skywork,TRUE,FALSE,TRUE
 QwQ-32B-Preview,72.7,74.9,65.8,40.1,61.2,https://example.com/qwq,TRUE,FALSE,TRUE
 OpenAI o1-mini,74.1,76.3,67.3,48.3,64.8,https://openai.com/research/o1,FALSE,FALSE,TRUE
+DeepSeek Distill Qwen-1.5B,42.4,61.9,48.8,25.6,45.1,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek Distill Qwen-7B,65.6,73.0,66.4,48.4,63.1,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek Distill Qwen-14B,69.8,79.9,71.2,51.6,68.0,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek Distill Qwen-32B,67.7,81.2,72.3,54.5,69.7,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek Distill Llama-8B,58.4,67.8,56.8,31.9,52.2,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek Distill Llama-70B,74.8,80.8,73.0,53.0,69.7,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
+DeepSeek R1,81.1,83.6,79.1,69.5,77.6,https://github.com/deepseek-ai/DeepSeek-R1,TRUE,FALSE,TRUE
