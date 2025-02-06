@@ -1,5 +1,5 @@
 Model,Greedy,G-Pass@16-0.5,G-Pass@16-0.75,G-Pass@16-1.0,mG-Pass@16,link,opensourced,mathLM,o1-like
-Llama-3.1-8B-Instruct,24.0,18.2,11.3,4.55,10.4,https://github.com/facebookresearch/llama,TRUE,FALSE,FALSE
+Llama-3.1-8B-Instruct,24.0,18.2,11.3,4.6,10.4,https://github.com/facebookresearch/llama,TRUE,FALSE,FALSE
 Llama-3.1-70B-Instruct,29.8,30.0,22.2,12.5,20.8,https://github.com/facebookresearch/llama,TRUE,FALSE,FALSE
 Llama-3.3-70B-Instruct,40.3,36.2,28.9,19.1,27.5,https://github.com/facebookresearch/llama,TRUE,FALSE,FALSE
 Qwen2.5-7B-Instruct,37.0,36.5,27.2,16.0,25.8,https://github.com/QwenLM/Qwen,TRUE,FALSE,FALSE
