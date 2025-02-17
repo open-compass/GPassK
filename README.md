@@ -49,7 +49,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 ### *LiveMathBench-202412*
 
-|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|24.0|18.2|11.3|4.5|10.4|
 |Qwen2.5-7B-Instruct ⚽|37.0|36.5|27.2|16.0|25.8|
@@ -73,7 +73,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 ### *LiveMathBench-Hard-202412*
 
-|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|2.2|0.8|0.0|0.0|0.0|
 |Qwen2.5-7B-Instruct ⚽|13.3|6.2|3.2|2.2|3.3|
@@ -93,7 +93,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 ### *MATH500-L5*
 
-|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|26.1|17.8|10.7|3.5|9.7|
 |InternLM3-8B-Instruct ⚽|51.5|49.9|40.3|26.9|38.3|
@@ -111,7 +111,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 ### *AIME2024-45*
 
-|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|4.4|2.2|1.6|0.0|1.2|
 |Qwen2.5-Math-7B-Instruct 🏐|11.1|4.6|2.6|2.2|3.7|
@@ -130,7 +130,7 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 ### *AIME2025*
 
-|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|0.0|8.9|0.0|0.0|0.0|
 |InternLM3-8B-Instruct ⚽|13.3|6.7|0.1|0.0|0.8|
