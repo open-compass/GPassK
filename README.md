@@ -16,6 +16,7 @@
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
+- **[2025.2.13]** 🔥 We new results on LiveMathBench, MATH, and AIME24/25.
 - **[2025.1.10]** 🔥 We release a small-scale judge model [LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge).
 - **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be accessed through hugginface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147)** for further details.
 - **[2024.12.18]** 🎉 We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 
@@ -40,12 +41,114 @@ $$ \text{mG-Pass@}k_{\tau} = 2\int_{0.5}^{1.0} \text{G-Pass@}k_{\tau} d \tau = \
 
 Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area under the curve of $\text{mG-Pass@}k_{[0.5:1.0]}$, serving as a comprehensive metric that integrates all $\text{G-Pass@}k_{\tau}$ values where $\tau \in [0.5, 1.0]$. 
 
-## 📚 Main Result
-*LiveMathBench-202412 version*
+## 📚 Main Results
 
-<div align="center">
- <img src="assets/performance.png" width="800"/>
-</div>
+* ⚽: General Models
+* 🏐: Math Models
+* 🏀: o1-like Models
+
+### *LiveMathBench-202412*
+
+|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|--|--|--|--|--|--|
+|Llama-3.1-8B-Instruct ⚽|24.0|18.2|11.3|4.5|10.4|
+|Qwen2.5-7B-Instruct ⚽|37.0|36.5|27.2|16.0|25.8|
+|Llama-3.3-70B-Instruct ⚽|40.3|36.2|28.9|19.1|27.5|
+|InternLM3-8B-Instruct ⚽|44.5|43.0|35.4|23.0|33.6|
+|Claude-3.5-Sonnet ⚽|46.7|44.1|36.2|26.6|35.3|
+|Mistral-Large-Instruct-2411 ⚽|41.6|39.4|37.1|32.9|36.4|
+|Qwen2.5-Math-7B-Instruct 🏐|68.4|44.1|38.3|28.1|36.6|
+|Qwen2.5-32B-Instruct ⚽|50.8|47.3|39.6|29.0|37.8|
+|Qwen2.5-Max ⚽|52.9|52.7|44.3|31.1|42.2|
+|Qwen2.5-Math-72B-Instruct 🏐|57.6|52.7|45.4|27.9|42.3|
+|DeepSeek-Distill-Llama-8B 🏀|58.4|67.8|56.8|31.9|52.2|
+|QwQ-32B-Preview 🏀|72.7|74.9|65.8|40.1|61.2|
+|DeepSeek-Distill-Qwen-7B 🏀|65.6|73.0|66.4|48.4|63.1|
+|OpenAI-o1-mini 🏀|74.1|76.3|67.3|48.3|64.8|
+|DeepSeek-Distill-Qwen-32B 🏀|67.7|81.2|72.3|54.5|69.7|
+|DeepSeek-Distill-Llama-70B 🏀|74.8|80.8|73.0|53.0|69.7|
+|OpenAI-o3-mini 🏀|84.7|85.7|78.8|65.3|76.8|
+|DeepSeek-R1 🏀|81.1|83.6|79.1|69.5|77.6|
+
+
+### *LiveMathBench-Hard-202412*
+
+|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|--|--|--|--|--|--|
+|Llama-3.1-8B-Instruct ⚽|2.2|0.8|0.0|0.0|0.0|
+|Qwen2.5-7B-Instruct ⚽|13.3|6.2|3.2|2.2|3.3|
+|Qwen2.5-Math-7B-Instruct 🏐|15.6|8.2|3.3|2.2|3.8|
+|QwQ-32B-Preview 🏀|15.6|5.9|4.4|2.4|4.0|
+|DeepSeek-Distill-Llama-8B 🏀|8.9|16.1|5.6|2.4|6.2|
+|InternLM3-8B-Instruct ⚽|11.1|10.7|8.2|2.7|7.0|
+|Qwen2.5-Math-72B-Instruct 🏐|11.1|11.8|7.9|5.9|7.9|
+|DeepSeek-Distill-Qwen-7B 🏀|17.8|13.9|8.8|3.3|8.1|
+|OpenAI-o1-mini 🏀|18.4|21.0|10.1|0.5|8.5|
+|Qwen2.5-32B-Instruct ⚽|13.3|14.1|10.5|3.5|9.1|
+|Qwen2.5-72B-Instruct ⚽|17.8|15.3|11.3|5.4|10.5|
+|DeepSeek-Distill-Qwen-32B 🏀|22.2|29.9|16.9|3.3|15.1|
+|DeepSeek-Distill-Llama-70B 🏀|35.6|33.1|19.0|5.8|17.3|
+|OpenAI-o3-mini 🏀|43.3|47.4|32.5|7.7|28.6|
+|DeepSeek-R1 🏀|42.2|46.6|33.6|9.8|29.6|
+
+### *MATH500-L5*
+
+|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|--|--|--|--|--|--|
+|Llama-3.1-8B-Instruct ⚽|26.1|17.8|10.7|3.5|9.7|
+|InternLM3-8B-Instruct ⚽|51.5|49.9|40.3|26.9|38.3|
+|Qwen2.5-7B-Instruct ⚽|56.0|54.9|43.3|28.0|41.5|
+|Qwen2.5-72B-Instruct ⚽|63.4|62.5|54.4|44.9|53.1|
+|Qwen2.5-Max ⚽|63.4|65.8|57.3|38.9|54.5|
+|Qwen2.5-32B-Instruct ⚽|64.2|66.6|59.4|41.0|55.6|
+|Qwen2.5-Math-72B-Instruct 🏐|71.6|64.9|59.4|46.0|57.4|
+|Qwen2.5-Math-7B-Instruct 🏐|65.7|65.0|62.2|57.6|61.5|
+|DeepSeek-Distill-Llama-8B 🏀|65.7|79.5|70.0|39.5|64.5|
+|QwQ-32B-Preview 🏀|82.8|87.2|78.8|57.4|75.6|
+|DeepSeek-Distill-Qwen-7B 🏀|78.4|87.9|80.5|62.6|77.6|
+|DeepSeek-Distill-Qwen-32B 🏀|83.6|89.9|83.8|70.4|81.9|
+|DeepSeek-Distill-Llama-70B 🏀|87.3|89.6|85.5|66.8|81.9|
+
+### *AIME2024-45*
+
+|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|--|--|--|--|--|--|
+|Llama-3.1-8B-Instruct ⚽|4.4|2.2|1.6|0.0|1.2|
+|Qwen2.5-Math-7B-Instruct 🏐|11.1|4.6|2.6|2.2|3.7|
+|Qwen2.5-32B-Instruct ⚽|11.1|7.1|3.4|2.2|3.7|
+|InternLM3-8B-Instruct ⚽|11.1|7.2|4.3|1.0|3.7|
+|Qwen2.5-7B-Instruct ⚽|11.1|8.9|8.1|4.7|7.5|
+|Qwen2.5-Max ⚽|22.2|15.5|9.9|5.3|9.8|
+|Qwen2.5-72B-Instruct ⚽|13.3|13.7|12.9|7.5|11.7|
+|Qwen2.5-Math-72B-Instruct 🏐|20.0|18.7|16.2|6.7|14.1|
+|QwQ-32B-Preview 🏀|44.4|41.0|28.6|8.1|24.7|
+|DeepSeek-Distill-Llama-8B 🏀|44.4|53.9|30.4|9.0|28.0|
+|DeepSeek-Distill-Qwen-7B 🏀|44.4|56.3|35.4|17.5|33.8|
+|OpenAI-o1-mini 🏀|60.3|62.2|53.3|15.6|43.1|
+|DeepSeek-Distill-Llama-70B 🏀|62.2|72.9|63.4|32.2|57.6|
+|DeepSeek-Distill-Qwen-32B 🏀|62.2|77.0|66.5|31.3|59.3|
+
+### *AIME2025*
+
+|LLMs|Greedy|G-Pass@$16_{0.5}$|G-Pass@$16_{0.75}$|G-Pass@$16_{1.0}$|mG-Pass@$16$|
+|--|--|--|--|--|--|
+|Llama-3.1-8B-Instruct ⚽|0.0|8.9|0.0|0.0|0.0|
+|InternLM3-8B-Instruct ⚽|13.3|6.7|0.1|0.0|0.8|
+|Qwen2.5-32B-Instruct ⚽|20.0|11.5|0.2|0.0|1.4|
+|Qwen2.5-7B-Instruct ⚽|6.7|9.7|6.2|0.2|4.7|
+|Qwen2.5-72B-Instruct ⚽|20.0|12.2|5.8|0.1|4.9|
+|Qwen2.5-Math-7B-Instruct 🏐|20.0|8.7|6.7|6.7|6.8|
+|Qwen2.5-Max ⚽|13.3|11.9|6.8|2.9|6.8|
+|Qwen2.5-Math-72B-Instruct 🏐|13.3|13.3|13.3|13.3|13.3|
+|Gemini-2.0-Flash-Exp ⚽|26.7|26.5|21.5|14.0|21.2|
+|QwQ-32B-Preview 🏀|26.7|34.5|32.4|15.6|28.1|
+|OpenAI-o1-mini 🏀|46.7|39.9|32.5|14.0|28.4|
+|DeepSeek-Distill-Llama-8B 🏀|40.0|40.4|21.2|7.9|21.0|
+|DeepSeek-Distill-Qwen-7B 🏀|46.7|46.6|38.3|22.7|36.1|
+|DeepSeek-Distill-Llama-70B 🏀|46.7|52.5|38.6|26.8|37.4|
+|DeepSeek-R1 🏀|66.7|52.6|46.8|24.3|42.5|
+|OpenAI-o3-mini 🏀|53.3|59.0|46.5|29.4|43.6|
+|DeepSeek-Distill-Qwen-32B 🏀|46.7|59.7|50.2|29.5|47.3|
 
 
 ## 🖋Use G-Pass@k in OpenCompass
@@ -128,7 +231,7 @@ python opencompass/run.py {path/to/config_file} \
 Refer to the OpenCompass documentation for additional arguments that may enhance your evaluation experience 
 
 
-# Citation and Tech Report
+## 📄 Citation and Tech Report
 If you use G-Pass@k in your research, please cite the following paper:
 ```
 @article{liu2024your,
