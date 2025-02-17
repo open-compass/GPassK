@@ -79,7 +79,9 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 |Qwen2.5-7B-Instruct ⚽|13.3|6.2|3.2|2.2|3.3|
 |Qwen2.5-Math-7B-Instruct 🏐|15.6|8.2|3.3|2.2|3.8|
 |QwQ-32B-Preview 🏀|15.6|5.9|4.4|2.4|4.0|
+|Llama-3.3-70B-Instruct ⚽|4.4|7.8|4.8|2.4|4.6|
 |DeepSeek-Distill-Llama-8B 🏀|8.9|16.1|5.6|2.4|6.2|
+|Llama-3.1-70B-Instruct ⚽|4.4|12.3|7.4|2.7|6.9|
 |InternLM3-8B-Instruct ⚽|11.1|10.7|8.2|2.7|7.0|
 |Qwen2.5-Math-72B-Instruct 🏐|11.1|11.8|7.9|5.9|7.9|
 |DeepSeek-Distill-Qwen-7B 🏀|17.8|13.9|8.8|3.3|8.1|
@@ -96,8 +98,10 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 |LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
 |Llama-3.1-8B-Instruct ⚽|26.1|17.8|10.7|3.5|9.7|
+|Llama-3.1-70B-Instruct ⚽|39.6|41.8|32.1|16.1|29.3|
 |InternLM3-8B-Instruct ⚽|51.5|49.9|40.3|26.9|38.3|
 |Qwen2.5-7B-Instruct ⚽|56.0|54.9|43.3|28.0|41.5|
+|Llama-3.3-70B-Instruct ⚽|54.5|55.4|49.5|35.0|47.3|
 |Qwen2.5-72B-Instruct ⚽|63.4|62.5|54.4|44.9|53.1|
 |Qwen2.5-Max ⚽|63.4|65.8|57.3|38.9|54.5|
 |Qwen2.5-32B-Instruct ⚽|64.2|66.6|59.4|41.0|55.6|
@@ -118,9 +122,11 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 |Qwen2.5-32B-Instruct ⚽|11.1|7.1|3.4|2.2|3.7|
 |InternLM3-8B-Instruct ⚽|11.1|7.2|4.3|1.0|3.7|
 |Qwen2.5-7B-Instruct ⚽|11.1|8.9|8.1|4.7|7.5|
+|Llama-3.1-70B-Instruct ⚽|15.6|15.0|8.1|3.0|8.0|
 |Qwen2.5-Max ⚽|22.2|15.5|9.9|5.3|9.8|
 |Qwen2.5-72B-Instruct ⚽|13.3|13.7|12.9|7.5|11.7|
 |Qwen2.5-Math-72B-Instruct 🏐|20.0|18.7|16.2|6.7|14.1|
+|Llama-3.3-70B-Instruct ⚽|22.2|25.3|18.2|6.9|16.4|
 |QwQ-32B-Preview 🏀|44.4|41.0|28.6|8.1|24.7|
 |DeepSeek-Distill-Llama-8B 🏀|44.4|53.9|30.4|9.0|28.0|
 |DeepSeek-Distill-Qwen-7B 🏀|44.4|56.3|35.4|17.5|33.8|
@@ -132,11 +138,13 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 
 |LLMs|Greedy|G-Pass@16_0.5|G-Pass@16_0.75|G-Pass@16_1.0|mG-Pass@16|
 |--|--|--|--|--|--|
-|Llama-3.1-8B-Instruct ⚽|0.0|8.9|0.0|0.0|0.0|
+|Llama-3.1-8B-Instruct ⚽|0.0|0.0|0.0|0.0|0.0|
+|Llama-3.1-70B-Instruct ⚽|6.7|4.6|0.2|0.0|0.7|
 |InternLM3-8B-Instruct ⚽|13.3|6.7|0.1|0.0|0.8|
 |Qwen2.5-32B-Instruct ⚽|20.0|11.5|0.2|0.0|1.4|
 |Qwen2.5-7B-Instruct ⚽|6.7|9.7|6.2|0.2|4.7|
 |Qwen2.5-72B-Instruct ⚽|20.0|12.2|5.8|0.1|4.9|
+|Llama-3.3-70B-Instruct ⚽|6.7|6.7|6.6|0.5|5.0|
 |Qwen2.5-Math-7B-Instruct 🏐|20.0|8.7|6.7|6.7|6.8|
 |Qwen2.5-Max ⚽|13.3|11.9|6.8|2.9|6.8|
 |Qwen2.5-Math-72B-Instruct 🏐|13.3|13.3|13.3|13.3|13.3|
