@@ -374,36 +374,36 @@
         "mathLM": "FALSE",
         "o1-like": "FALSE",
         "Greedy": {
-            "LiveMathBench-2412": null,
-            "LiveMathBench-Hard-2412": null,
+            "LiveMathBench-2412": 66.8,
+            "LiveMathBench-Hard-2412": 20.0,
             "MATH500-L5": 79.1,
             "AIME2024-45": 33.3,
             "AIME2025": 26.7
         },
         "G-Pass@16-0.5": {
-            "LiveMathBench-2412": null,
-            "LiveMathBench-Hard-2412": null,
+            "LiveMathBench-2412": 71.5,
+            "LiveMathBench-Hard-2412": 14.3,
             "MATH500-L5": 83.3,
             "AIME2024-45": 28.4,
             "AIME2025": 23.1
         },
         "G-Pass@16-0.75": {
-            "LiveMathBench-2412": null,
-            "LiveMathBench-Hard-2412": null,
+            "LiveMathBench-2412": 60.9,
+            "LiveMathBench-Hard-2412": 8.3,
             "MATH500-L5": 76.3,
             "AIME2024-45": 22.5,
             "AIME2025": 20.0
         },
         "G-Pass@16-1.0": {
-            "LiveMathBench-2412": null,
-            "LiveMathBench-Hard-2412": null,
+            "LiveMathBench-2412": 42.4,
+            "LiveMathBench-Hard-2412": 3.9,
             "MATH500-L5": 63.1,
             "AIME2024-45": 10.6,
             "AIME2025": 20.0
         },
         "mG-Pass@16": {
-            "LiveMathBench-2412": null,
-            "LiveMathBench-Hard-2412": null,
+            "LiveMathBench-2412": 58.0,
+            "LiveMathBench-Hard-2412": 8.0,
             "MATH500-L5": 74.1,
             "AIME2024-45": 20.5,
             "AIME2025": 20.3
@@ -415,7 +415,7 @@
         "mathLM": "FALSE",
         "o1-like": "FALSE",
         "Greedy": {
-            "LiveMathBench-2412": 46.7,
+            "LiveMathBench-2412": 42.4,
             "LiveMathBench-Hard-2412": 11.1,
             "MATH500-L5": 50.0,
             "AIME2024-45": 13.3,
