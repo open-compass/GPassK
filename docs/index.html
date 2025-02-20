@@ -141,21 +141,14 @@
         
         <input type="radio" class="btn-check" name="btnradio" id="AIME2025" />
         <label class="btn btn-outline-primary" for="AIME2025">AIME2025</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="Mean" />
+        <label class="btn btn-outline-primary" for="Mean">Mean</label>
       </div>
       
       <div id="chart" style="width: 100%; height: 600px"></div>
       <div class="container-fluid d-flex flex-row flex-nowrap">
-        <!-- <div class="container-fluid d-flex flex-column align-items-center">
-          <label for="plused" class="text-success mb-3"
-            >Input Reasoning</label
-          >
-          <table
-            id="plused"
-            class="table table-responsive table-striped table-bordered flex-shrink-1 border border-success border-3"
-          ></table>
-        </div> -->
         <div class="container-fluid d-flex flex-column align-items-center">
-          <!-- <label for="origin" class="text-danger mb-3">Output Reasoning</label> -->
           <table
             id="origin"
             class="table table-responsive table-striped table-bordered flex-shrink-1 border border-danger border-3"
@@ -207,6 +200,21 @@
             var sizeMatch = row['Model'].match(/\d+(\.\d+)?B/g);
             sizeMatch = sizeMatch ? Math.round(parseFloat(sizeMatch[0].replace('B', ''))).toString() : 'N/A';
             row['Size'] = sizeMatch;
+        });
+        data.forEach((row) => {
+          let metrics = ['Greedy', 'G-Pass@16-0.5', 'G-Pass@16-0.75', 'G-Pass@16-1.0', 'mG-Pass@16'];
+          metrics.forEach((metric) => {
+            if (row[metric]['LiveMathBench-Hard-2412'] != null && 
+                row[metric]['MATH500-L5'] != null & 
+                row[metric]['AIME2024-45'] != null && 
+                row[metric]['AIME2025'] != null) {
+              row[metric]['Mean'] = (row[metric]['LiveMathBench-Hard-2412'] + 
+                                     row[metric]['MATH500-L5'] + 
+                                     row[metric]['AIME2024-45'] + 
+                                     row[metric]['AIME2025']) / 4;
+              row[metric]['Mean'] = Math.round(row[metric]['Mean'] * 10) / 10;
+            }
+          });
         });
     } else {
         alert("Failed to load data from results.json");
@@ -580,7 +588,7 @@
         });
         option && myChart.setOption(option);
     };
-    const benchmarks = ['LiveMathBench-2412', 'LiveMathBench-Hard-2412', 'MATH500-L5', 'AIME2024-45', 'AIME2025'];
+    const benchmarks = ['LiveMathBench-2412', 'LiveMathBench-Hard-2412', 'MATH500-L5', 'AIME2024-45', 'AIME2025', 'Mean'];
 
     benchmarks.forEach(benchmark => {
       const radio = document.getElementById(benchmark);
