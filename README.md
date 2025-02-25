@@ -168,7 +168,7 @@ Follow these steps to ensure your environment is ready:
 ```bash
 # Clone the main repository
 git clone https://github.com/open-compass/GPassK.git
-cd GPassK
+cd GPassK/opencompass
 
 # Create and activate a conda environment with specific Python and PyTorch versions
 conda create -n livemathbench-eval python=3.10 pytorch torchvision torchaudio pytorch-cuda -c nvidia -c pytorch -y
@@ -178,7 +178,7 @@ conda activate livemathbench-eval
 pip install loguru
 
 # Clone and install OpenCompass for extended functionality
-git clone https://github.com/open-compass/opencompass.git opencompass
+git clone https://github.com/open-compass/opencompass.git
 cd opencompass
 pip install -e .
 ```
@@ -201,15 +201,18 @@ lmdeploy serve api_server Qwen/Qwen2.5-72B-Instruct --server-port 8000 \
 ```
 After setting up the judge model, define the URLs in the `eval_urls` and `eval_model_name` within `opencompass_config_templates/*.py`. Adjust other parameters such as `k`， `temperatures`, `llm_infos`, and other params according to your needs.
 
-> ❗️Note that omitting `eval_urls` will default to an internal rule-based judge, which might only apply to datasets with numerical answers 
+> [!NOTE]
+> Note that omitting `eval_urls` will default to an internal rule-based judge, which might only apply to datasets with numerical answers 
 
+> [!TIP]
 > 💡Now you can use the [LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge) for judging, which greatly reduces deploy and inference costs.
 
 ### 4. Evaluation
 
 To begin the evaluation, first generate the necessary configuration files by running the following script:
 ```bash
-python save_opencompass_configs.py --config_template_file {opencompass_config_templates/nono1.py|opencompass_config_templates/o1.py}
+cd opencompass
+python dump_opencompass_configs.py --config_template_file {config_templates/nono1.py|config_templates/o1.py|config_templates/close.py}
 ```
 
 Upon execution, verify the generated configuration files located in `opencompass_configs/:
@@ -236,7 +239,58 @@ python opencompass/run.py {path/to/config_file} \
       -w ./opencompass_outputs/ \
       --dump-eval-details \
 ```
-Refer to the OpenCompass documentation for additional arguments that may enhance your evaluation experience 
+Refer to the OpenCompass documentation for additional arguments that may enhance your evaluation experience.
+
+## 🖋Use G-Pass@k in Ligheval
+
+[Lighteval](https://github.com/huggingface/lighteval) is your all-in-one toolkit for evaluating LLMs across multiple backends—whether it's transformers, tgi, vllm, or nanotron—with ease.
+
+
+### 1. Prepare Environment
+Follow these steps to ensure your environment is ready:
+
+```bash
+# Clone the main repository
+git clone https://github.com/open-compass/GPassK.git
+cd GPassK/lighteval
+
+# Create and activate a conda environment with specific Python and PyTorch versions
+conda create -n lighteval-eval python=3.10 pytorch torchvision torchaudio pytorch-cuda -c nvidia -c pytorch -y
+conda activate lighteval-eval
+
+# Clone and install OpenCompass for extended functionality
+git clone https://github.com/huggingface/lighteval
+cd lighteval
+pip install -e .
+
+# Install additional required packages
+pip install opencompass vllm
+```
+
+### 2. Prepare Dataset
+LiveMathBench dataset can be obtained from HuggingFace. First, you should be granted to access the dataset from the following link: [huggingface](https://huggingface.co/datasets/opencompass/LiveMathBench).
+Then, refer to [security-tokens](https://huggingface.co/docs/hub/security-tokens) to set up your HF tokens.
+
+
+### 3. Deploy Judge Models
+We leverage Qwen2.5-72B-Instruct as the judge model for judging the correctness of generated answers. We recommend to deploy services using deployment tools such as [vllm](https://github.com/vllm-project/vllm) or [lmdeploy](https://github.com/InternLM/lmdeploy) for invocation by different evaluation tasks.
+
+Below is an example configuration for deploying the judge model using `lmdeploy`:
+```bash
+lmdeploy serve api_server Qwen/Qwen2.5-72B-Instruct --server-port 8000 \
+    --tp 4 \ # at least 4 A100 or equivalent GPUs are required
+    --cache-max-entry-count 0.9 \
+    --log-level INFO 
+```
+After setting up the judge model, define the URLs in the `eval_urls` and `eval_model` within `lighteval/configs/eval_cfg.yaml`. Adjust other parameters such as `k`， `n`, `model_name_or_path`, and other params according to your needs.
+
+### 4. Evaluation
+
+To begin the evaluation, running the following script:
+```bash
+cd lighteval
+python lighteval_run.py
+```
 
 
 ## 📄 Citation and Tech Report
