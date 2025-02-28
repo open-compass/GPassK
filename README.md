@@ -16,8 +16,9 @@
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
-- **[2025.2.13]** 🔥 We new results on LiveMathBench, MATH, and AIME24/25.
-- **[2025.1.10]** 🔥 We release a small-scale judge model [LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge).
+- **[2025.2.28]** 🔥 We provide **[python-class](#use_in_your_pro)** and **[evalution framework](#use_in_lighteval)** using **[Lighteval](https://github.com/huggingface/lighteval)**.
+- **[2025.2.13]** 🔥 We release new results on LiveMathBench, MATH, and AIME24/25.
+- **[2025.1.10]** 🔥 We release a small-scale judge model **[LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge)**.
 - **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be accessed through hugginface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147)** for further details.
 - **[2024.12.18]** 🎉 We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 
 
@@ -158,6 +159,135 @@ Intuitively, $\text{mG-Pass@}k$ provides an interpolated estimate of the area un
 |OpenAI-o3-mini 🏀|53.3|59.0|46.5|29.4|43.6|
 |DeepSeek-Distill-Qwen-32B 🏀|46.7|59.7|50.2|29.5|47.3|
 
+## 🖋<span id="use_in_your_pro">Use G-Pass@k in Your Project</span>
+
+You can use the following class in your work, you need to define the parameters of G-Pass@k, such as `k`, `n`, and `thresholds`. Additionally, you must define a function to score each sample pair, which should return a binary (0 or 1) label for each pair of prediction and corresponding gold. The compute method will then return a dictionary containing the metrics for each gold standard value and its corresponding predictions. You can aggregate these metrics across your dataset as needed.
+
+```python
+class GPassAtK:
+    def __init__(
+        self,
+        k: Union[int, List[int]],
+        n: int = None,
+        thresholds: List[float] = [0.0, 0.25, 0.5, 0.75, 1.0],
+        sample_scoring_function: Union[Callable[[str, str], float], str] = None,
+    ):
+        """Computing G-Pass@k from http://arxiv.org/abs/2412.13147
+
+        Args:
+            k (int, list): The number of successful attempts to be considered.
+            n (int): Number of samples to generate.
+            thresholds (list): Thresholds to control successful attempts in k generate.
+            sample_scoring_function (callable or str, optional): Function to use to score each sample.
+                Either pass the full function (should take a string prediction and a string gold, and return a score between 0 and 1)
+                a string (any of `prefix`, `suffix` or `full`) to define the type of exact match that you want, or nothing to defaults to "full".
+                    `prefix` checks if the prediction starts with the gold,
+                    `suffix` if the prediction ends with the gold,
+                    `full` if the prediction and gold are equal
+        """
+        self.k = as_list(k)
+        self.n = n
+        self.thresholds = thresholds
+
+        # Managed the logic of the per prediction of sample scoring
+        if callable(sample_scoring_function):
+            self.score_sample = sample_scoring_function
+            self.type_exact_match = None
+        else:
+            if isinstance(sample_scoring_function, str):
+                if sample_scoring_function not in ["prefix", "suffix", "full"]:
+                    raise ValueError(
+                        f"type_exact_match (used in parametrized_exact_match) must be one of prefix, suffix, or full. Was {sample_scoring_function} instead."
+                    )
+                self.type_exact_match = sample_scoring_function
+            else:
+                self.type_exact_match = "full"
+            self.score_sample = self.default_sample_scoring
+
+    def compute(self, predictions: List[str], gold: str, **kwargs) -> dict[str, float]:
+        """Computes the metric over a list of golds and predictions for one single item with possibly many samples.
+        It applies normalisation (if needed) to model prediction and gold, computes their per prediction score,
+        then aggregates the scores over the samples using a pass@k.
+
+        Args:
+            golds (list[str]): Reference targets
+            predictions (list[str]): k predicted strings
+
+        Returns:
+            float: Aggregated score over the current sample's items.
+        """
+        if len(golds) > 1:
+            raise Exception("Cannot compute G-Pass@k with several golds")
+
+        if self.n is None:
+            self.n = len(predictions)
+            logger.warning(
+                "n undefined in the G-Pass@k. We assume it's the same as the sample's number of predictions."
+            )
+        elif len(predictions) < self.n:
+            logger.warning(f"Number of predictions is less than {self.n} for G-Pass@k.")
+
+        all_scores = []
+        for pred in predictions[: self.n]:
+            all_scores.append(self.score_sample(pred, gold))
+
+        return self.g_pass_at_k(all_scores)
+
+    def default_sample_scoring(self, pred: str, gold: str) -> int:
+        if self.type_exact_match == "prefix":
+            return 1 if pred.startswith(gold) else 0
+        if self.type_exact_match == "suffix":
+            return 1 if pred.endswith(gold) else 0
+        return 1 if gold == pred else 0
+
+    def g_pass_at_k(self, all_scores: list[int]) -> float:
+        """Computation of G-Pass@k details from http://arxiv.org/abs/2412.13147"""
+        c: int = sum(all_scores)
+        n: int = self.n
+        ks: int = self.k
+        thresholds: List[float] = self.thresholds
+
+        def _compute_g_pass_at_k(n, c, k, m):
+            if m > min(c, k) or k > n or c < 0 or n <= 0 or m < 0:
+                return 0.0
+            return hypergeom.sf(m - 1, n, c, k)
+
+        def compute_g_pass_at_k(n, c, k, t):
+            m = max(int(np.ceil(k * t)), 1)
+            return _compute_g_pass_at_k(n, c, k, m)
+
+        def compute_mg_pass_at_k(n, c, k):
+            low, high = int(np.ceil(k * 0.5)), k
+
+            mg_pass_at_k = 0.0
+            for i in range(low + 1, high + 1):
+                mg_pass_at_k += _compute_g_pass_at_k(n, c, k, i)
+            mg_pass_at_k = 2 * mg_pass_at_k / k
+
+            return mg_pass_at_k
+
+        metrics = {}
+        for k in ks:
+            for t in thresholds:
+                metrics[f"G-Pass@{k}_{t}"] = compute_g_pass_at_k(n, c, k, t)
+            metrics[f"mG-Pass@{k}"] = compute_mg_pass_at_k(n, c, k)
+
+        return metrics
+
+    @property
+    def all_metrics(self):
+        ks: int = self.k
+        thresholds: List[float] = self.thresholds
+
+        metrics = []
+        for k in ks:
+            for t in thresholds:
+                metrics.append(f"G-Pass@{k}_{t}")
+            metrics.append(f"mG-Pass@{k}")
+
+        return metrics
+```
+
 
 ## 🖋Use G-Pass@k in OpenCompass
 [OpenCompass](https://github.com/open-compass/opencompass) is a toolkit for evaluating the performance of large language models (LLMs). To use GPassK in OpenCompass, you can follow the steps below:
@@ -241,7 +371,7 @@ python opencompass/run.py {path/to/config_file} \
 ```
 Refer to the OpenCompass documentation for additional arguments that may enhance your evaluation experience.
 
-## 🖋Use G-Pass@k in Ligheval
+## 🖋<span id="use_in_lighteval">Use G-Pass@k in Ligheval</span>
 
 [Lighteval](https://github.com/huggingface/lighteval) is your all-in-one toolkit for evaluating LLMs across multiple backends—whether it's transformers, tgi, vllm, or nanotron—with ease.
 
