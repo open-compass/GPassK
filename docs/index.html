@@ -127,8 +127,11 @@
         /></a>
       </div>
       <div class="btn-group" role="group" id="Benchmark">
-        <input type="radio" class="btn-check" name="btnradio" id="LiveMathBench-2412" checked />
-        <label class="btn btn-outline-primary" for="LiveMathBench-2412">LiveMathBench-2412</label>
+        <!-- <input type="radio" class="btn-check" name="btnradio" id="LiveMathBench-2412" checked />
+        <label class="btn btn-outline-primary" for="LiveMathBench-2412">LiveMathBench-2412</label> -->
+
+        <input type="radio" class="btn-check" name="btnradio" id="Mean" />
+        <label class="btn btn-outline-primary" for="Mean">Mean</label>
         
         <input type="radio" class="btn-check" name="btnradio" id="LiveMathBench-Hard-2412" />
         <label class="btn btn-outline-primary" for="LiveMathBench-Hard-2412">LiveMathBench-Hard-2412</label>
@@ -142,8 +145,6 @@
         <input type="radio" class="btn-check" name="btnradio" id="AIME2025" />
         <label class="btn btn-outline-primary" for="AIME2025">AIME2025</label>
 
-        <input type="radio" class="btn-check" name="btnradio" id="Mean" />
-        <label class="btn btn-outline-primary" for="Mean">Mean</label>
       </div>
       
       <div id="chart" style="width: 100%; height: 600px"></div>
@@ -344,6 +345,7 @@
       'G-Pass@16-1.0',
       'mG-Pass@16',
     ];
+    const benchmarks = ['LiveMathBench-Hard-2412', 'MATH500-L5', 'AIME2024-45', 'AIME2025'];
 
     const displayTable = (table, score) => {
         // filter out Null
@@ -437,6 +439,116 @@
             var instructCell = document.createElement('td');
             instructCell.classList.add('text-danger');
             instructCell.textContent = row['G-Pass@16-1.0'][score];
+            dataRow.appendChild(instructCell);
+
+            var passCell = document.createElement('td');
+            passCell.classList.add('bold-blue');
+            passCell.textContent += row['mG-Pass@16'][score];
+            dataRow.appendChild(passCell);
+
+            tbody.appendChild(dataRow);
+      });
+      table.appendChild(tbody);
+    }
+
+    const displayMeanTable = (table, score) => {
+        // filter out Null
+        data = globalData
+            .filter((row) => {
+                return row['mG-Pass@16'][score] != null;
+            })
+            .sort((a, b) => {
+                return b['mG-Pass@16'][score] - a['mG-Pass@16'][score];
+            });
+
+        var thead = document.createElement('thead');
+        var headerRow = document.createElement("tr");
+        // add rank
+        var th = document.createElement('th');
+        th.textContent = '#';
+        headerRow.appendChild(th);
+        // headers
+        var th = document.createElement('th');
+        th.textContent = 'Model';
+        headerRow.appendChild(th);
+        benchmarks.forEach(function (header) {
+            var th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
+        });
+        var th = document.createElement('th');
+        th.textContent = 'mean';
+        headerRow.appendChild(th);
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        var tbody = document.createElement('tbody');
+        // add rank
+        var rank = 1;
+        data.forEach((row) => {
+            var dataRow = document.createElement("tr");
+            var rankCell = document.createElement("td");
+            rankCell.textContent = rank;
+            dataRow.appendChild(rankCell);
+            var modelCell = document.createElement("td");
+            if (rank == 1) {
+                modelCell.textContent = "🥇 ";
+            } else if (rank == 2) {
+                modelCell.textContent = "🥈 ";
+            } else if (rank == 3) {
+                modelCell.textContent = "🥉 ";
+            } else {
+                modelCell.textContent = "";
+            }
+            rank++;
+
+            var modelLink = document.createElement("a");
+            modelLink.href = row["link"];
+            modelLink.textContent = row["Model"];
+            modelLink.classList.add("link-underline-primary");
+            modelLink.classList.add("text-nowrap");
+            modelCell.appendChild(modelLink);
+            modelCell.classList.add("d-flex");
+            modelCell.classList.add("flex-nowrap");
+            var opensourced = row['opensourced'];
+            var mathmodel = row['mathLM'];
+            var o1model = row['o1-like'];
+            if (opensourced == 'FALSE') {
+                var promptedSymbol = document.createElement('span');
+                promptedSymbol.textContent = '🌍';
+                modelCell.appendChild(promptedSymbol);
+            }
+            if (mathmodel == 'TRUE') {
+                var promptedSymbol = document.createElement('span');
+                promptedSymbol.textContent = '🧮';
+                modelCell.appendChild(promptedSymbol);
+            }
+            if (o1model == 'TRUE') {
+                var promptedSymbol = document.createElement('span');
+                promptedSymbol.textContent = '💡';
+                modelCell.appendChild(promptedSymbol);
+            }
+
+            dataRow.appendChild(modelCell);
+
+            var instructCell = document.createElement('td');
+            instructCell.classList.add('text-success');
+            instructCell.textContent = row['mG-Pass@16'][benchmarks[0]];
+            dataRow.appendChild(instructCell);
+
+            var instructCell = document.createElement('td');
+            instructCell.classList.add('text-success');
+            instructCell.textContent = row['mG-Pass@16'][benchmarks[1]];
+            dataRow.appendChild(instructCell);
+
+            var instructCell = document.createElement('td');
+            instructCell.classList.add('text-success');
+            instructCell.textContent = row['mG-Pass@16'][benchmarks[2]];
+            dataRow.appendChild(instructCell);
+
+            var instructCell = document.createElement('td');
+            instructCell.classList.add('text-success');
+            instructCell.textContent = row['mG-Pass@16'][benchmarks[3]];
             dataRow.appendChild(instructCell);
 
             var passCell = document.createElement('td');
@@ -588,7 +700,146 @@
         });
         option && myChart.setOption(option);
     };
-    const benchmarks = ['LiveMathBench-2412', 'LiveMathBench-Hard-2412', 'MATH500-L5', 'AIME2024-45', 'AIME2025', 'Mean'];
+
+    const displayMeanChart = (score) => {
+        // sort first
+        const data = globalData
+            .filter((row) => {
+                return row['mG-Pass@16'][score] != null;
+            })
+            .sort((a, b) => {
+                if (parseFloat(a['Size']) - parseFloat(b['Size']) < 0) return -1;
+                if (parseFloat(a['Size']) - parseFloat(b['Size']) > 0) return 1;
+                return b['mG-Pass@16'][score] - a['mG-Pass@16'][score];
+            });
+
+        var sizeSet = new Set();
+        sizeSet.add(0);
+        data.forEach(function(row) {
+            if (row['Size'] != 'N/A') {
+                sizeSet.add(row['Size']);
+            }
+        });
+        sizeSet.add(100);
+        sizeSet.forEach(function(size) {
+            option.xAxis.data.push(size);
+        });
+
+        var maxScore = 0.0;
+        data.forEach(function(row) {
+            if (parseFloat(row['mG-Pass@16'][score]) > maxScore) {
+                maxScore = parseFloat(row['mG-Pass@16'][score]);
+            }
+        });
+        option.yAxis.max = maxScore + 1;
+
+        data.forEach(function(row) {
+            if (row['Size'] == 'N/A') {
+                if (row['opensourced'] == 'FALSE') {
+                    option.series[1].markLine.data.push({
+                    name: row['Model'],
+                    yAxis: row['mG-Pass@16'][score]
+                });
+                } else {
+                    option.series[0].markLine.data.push({
+                    name: row['Model'],
+                    yAxis: row['mG-Pass@16'][score]
+                    });
+                }
+            } else {
+                if (row['opensourced'] == 'FALSE') {
+                    option.series[1].data.push({
+                        name: row['Model'],
+                        value: [row['Size'], row['mG-Pass@16'][score]],
+                        size: row['Size'],
+                    });
+                } else {
+                    option.series[0].data.push({
+                        name: row['Model'],
+                        value: [row['Size'], row['mG-Pass@16'][score]],
+                        size: row['Size'],
+                    });
+                }
+            }
+        });
+
+        // select the highest model of each size
+        sizeSet.forEach(function(size) {
+            var maxScore = 0.0;
+            var maxScoreIns = 0.0;
+            var maxModel, maxModelIns, align;
+
+            data.forEach(function(row) {
+                if (row['Size'] == size) {
+                    if(row['opensourced'] == 'FALSE') {
+                        if (parseFloat(row['mG-Pass@16'][score]) > maxScoreIns) {
+                            maxScoreIns = parseFloat(row['mG-Pass@16'][score]);
+                            maxModelIns = row['Model'][score];
+                        }
+                    } else {
+                        if (parseFloat(row['mG-Pass@16'][score]) > maxScore) {
+                            maxScore = parseFloat(row['mG-Pass@16'][score]);
+                            maxModel = row['Model'];
+                        }
+                    }
+                }
+            });
+            var count = 0;
+
+            option.series[0].data.forEach(function(row) {
+                if (row['size'] == size) {
+                    count += 1;
+                    if (count % 2 == 1){
+                        offset = [40, 0];
+                    } else {
+                        offset = [-40, 0];
+                    }
+                    row.itemStyle = {
+                        opacity: 1.0
+                    };
+                    row.label = {
+                        show: true,
+                        position: 'top',
+                        offset: offset,
+                        formatter: function(params) {
+                            return params.data.name;
+                        },
+                        color: 'inherit'
+                    };
+                }
+            });
+
+            option.series[1].data.forEach(function(row) {
+                var offset = [0, 0]; // Define the offset variable with an appropriate value
+                if (true) {
+                    row.itemStyle = {
+                        opacity: 1.0
+                    };
+                    row.label = {
+                        show: true,
+                        position: 'top',
+                        offset: offset,
+                        formatter: function(params) {
+                            return params.data.name;
+                        },
+                        color: 'inherit'
+                    };
+                }
+            });
+        });
+
+        option.series[1].markLine.data.forEach(function(row){
+            row.label = {
+            show: true,
+            position: 'middle',
+            formatter: function(params) {
+                return params.data.name;
+            },
+            color: 'inherit'
+            };
+        });
+        option && myChart.setOption(option);
+    };
 
     benchmarks.forEach(benchmark => {
       const radio = document.getElementById(benchmark);
@@ -599,7 +850,15 @@
           displayChart(`${benchmark}`);
       });
     });
-    const radio = document.getElementById('LiveMathBench-2412');
+    const mean_radio = document.getElementById('Mean');
+    mean_radio.addEventListener("click", function () {
+        clearTable();
+        displayMeanTable(originTable, 'Mean');
+        clearChart();
+        displayMeanChart('Mean');
+    });
+
+    const radio = document.getElementById('Mean');
     radio.click();
 
     window.addEventListener("resize", () => {
