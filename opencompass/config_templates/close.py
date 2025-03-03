@@ -7,7 +7,7 @@ from opencompass.models import OpenAISDK
 
 
 k = [4, 8, 16]
-replication = 3
+n = 48
 version = '202412'
 temperatures = [1.0]
 
@@ -81,18 +81,16 @@ models = [
 livemathbench_dataset = livemathbench_datasets[0]
 livemathbench_dataset.update(dict(
     k=k,
-    replication=replication,
+    n=n,
     dataset_splits=['CNMO', 'CCEE', 'AMC', 'WLPMC'], # set ['hard'] for hard split
     dataset_languages=['cn', 'en'],
     cot=True,
     version=version,
-    abbr=f'LiveMathBench-v{version}-k{"_".join(map(str, [k] if isinstance(k, int) else k))}-r{replication}'
+    abbr=f'LiveMathBench-v{version}-k{"_".join(map(str, [k] if isinstance(k, int) else k))}-n{n}'
 ))
 livemathbench_dataset['eval_cfg']['evaluator'].update(dict(
     model_name=eval_model_name,
-    url=eval_urls,
-    k=k,
-    replication=replication 
+    url=eval_urls
 ))
 livemathbench_dataset['infer_cfg']['inferencer'].update(dict(
     max_out_len=max_out_len
