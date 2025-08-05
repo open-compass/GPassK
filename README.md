@@ -16,10 +16,11 @@
 [📚[LeaderBoard](https://github.com/open-compass/GPassK/index.html)] -->
 
 ## 🚀 News
+- **[2025.6]** 🔥 We release the v202505 version of LiveMathBench, please refer to [HuggingFace](https://huggingface.co/datasets/opencompass/LiveMathBench)
 - **[2025.2.28]** 🔥 We provide **[Python Implementation](#use_in_your_pro)** and **[Evalution Framework](#use_in_lighteval)** using **[Lighteval](https://github.com/huggingface/lighteval)**.
 - **[2025.2.13]** 🔥 We release new results on LiveMathBench, MATH, and AIME24/25.
 - **[2025.1.10]** 🔥 We release a small-scale judge model **[LiveMath-Judge](https://huggingface.co/jnanliu/LiveMath-Judge)**.
-- **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be accessed through hugginface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147)** for further details.
+- **[2025.1.6]** 🔥 **[LiveMathBench](https://huggingface.co/datasets/opencompass/LiveMathBench)** now can be accessed through huggingface, and you can now evaluate your LLMs on it using G-Pass@k in OpenCompass. We have addressed potential errors in LiveMathBench and inconsistencies in the sampling parameters. Please also refer to our updated version of the **[Paper](http://arxiv.org/abs/2412.13147)** for further details.
 - **[2024.12.18]** 🎉 We release the **[ArXiv Paper](http://arxiv.org/abs/2412.13147)** of G-Pass@k. 
 
 
